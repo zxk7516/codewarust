@@ -1,10 +1,19 @@
-fn get_middle(s: &str) -> &str {
+fn get_middle_old(s: &str) -> &str {
     
     let len = s.len();
     let start = (len - 1) / 2;
     let end = start + (if len % 2 == 0 { 2 } else { 1 });
     &s[start..end]
 }
+
+fn get_middle(s: &str) -> &str {
+    
+    let len = s.len();
+    let start = (len - 1) / 2;
+    let end = len/2+1;
+    &s[start..end]
+}
+
 
 #[test]
 fn example_tests() {
