@@ -1,3 +1,7 @@
+///
+/// ## area the
+/// ### 
+
 fn comp(a: Vec<i64>, b: Vec<i64>) -> bool {
     if a.len() != b.len() {
         return false;
