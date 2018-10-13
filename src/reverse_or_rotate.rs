@@ -10,21 +10,15 @@ fn revrot(s: &str, c: usize) -> String {
     for i in 0..chunk_num {
         if s[i * c..(i + 1) * c]
             .chars()
-            .map(|c| c.to_digit(RADIX).unwrap() )
+            .map(|c| c.to_digit(RADIX).unwrap())
             .sum::<u32>()
             % 2
             == 0
         {
-            for cc in s[i * c..(i + 1) * c].chars().rev() {
-                r.push(cc);
-            }
-
-            
+            r = r + &(s[i * c..(i + 1) * c].chars().rev().collect::<String>());
         } else {
-            for cc in s[i * c + 1..(i + 1) * c].chars() {
-                r.push(cc);
-            }
-            r.push(s.chars().nth(i * c).unwrap());
+            r = r + &(s[i * c + 1..(i + 1) * c]);
+            r = r + &(s[i * c..i * c + 1]);
         }
     }
 
@@ -34,16 +28,17 @@ fn revrot(s: &str, c: usize) -> String {
 fn revrot2(s: &str, c: usize) -> String {
     let mut result = String::with_capacity(s.len());
     if c > 0 {
-        for i in 0 .. s.len() / c {
+        for i in 0..s.len() / c {
             let i = c * i;
-            result += &transform(&s[i..i+c]);
+            result += &transform(&s[i..i + c]);
         }
     }
     result
 }
 
 fn transform(s: &str) -> String {
-    let sum: u32 = s.chars()
+    let sum: u32 = s
+        .chars()
         .map(|c| c.to_digit(10).unwrap())
         .map(|x| x.pow(3))
         .sum();
