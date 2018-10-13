@@ -4,4 +4,5 @@
 // mod descending_order;
 // mod to_leet_speak;
 // mod consecutive_strings;
-mod string_drills_repeater;
+// mod string_drills_repeater;
+mod reverse_or_rotate;

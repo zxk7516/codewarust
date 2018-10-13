@@ -1,3 +1,4 @@
+use std::iter::FromIterator;
 /// ## Descending Order
 /// Your task is to make a function that can take any non-negative integer as a argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
 /// ### Examples:
@@ -5,16 +6,16 @@
 /// Input: `145263` Output: `654321`
 /// Input: `1254859723` Output: `9875543221`   
 use std::string::String;
-use std::iter::FromIterator;
 fn descending_order(x: u64) -> u64 {
-    let sl = &format!("{}", x)[..];
-    let mut chars: Vec<char> = sl.chars().collect();
+    let mut chars: Vec<char> = x.to_string().chars().collect();
     chars.sort_by(|a, b| b.cmp(a));
-    match  String::from_iter(chars).parse::<u64>()
-    {
-        Ok(u) => u,
-        _ => 0,
-    }
+    String::from_iter(chars).parse::<u64>().unwrap()
+}
+
+fn descending_order2(x: u64) -> u64 {
+    let mut result = x.to_string().chars().collect::<Vec<char>>();
+    result.sort_by(|a, b| b.cmp(a));
+    String::from_iter(result).parse::<u64>().unwrap()
 }
 
 #[test]
