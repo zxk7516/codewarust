@@ -5,4 +5,9 @@
 // mod to_leet_speak;
 // mod consecutive_strings;
 // mod string_drills_repeater;
-mod reverse_or_rotate;
+// mod reverse_or_rotate;
+// mod form_the_minimum;
+// mod BallUpwards;
+// mod BankersPlan;
+// mod tortoise_racing;
+mod reducing_by_steps;
