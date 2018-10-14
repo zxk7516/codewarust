@@ -10,4 +10,6 @@
 // mod BallUpwards;
 // mod BankersPlan;
 // mod tortoise_racing;
-mod reducing_by_steps;
+// mod reducing_by_steps;
+// mod john_and_ann_sign_up_for_codewars;
+mod weight_for_weight;
