@@ -1,3 +1,4 @@
+/// [link](https://www.codewars.com/kata/simple-interactive-interpreter/train/rust)
 struct Interpreter {}
 
 impl Interpreter {
