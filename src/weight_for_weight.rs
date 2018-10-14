@@ -6,6 +6,13 @@ fn order_weight(s: &str) -> String {
     weight_str.join(" ")
 }
 
+fn order_weight2(s: &str) -> String {
+  let mut numbers = s.split_whitespace().collect::<Vec<_>>();
+  numbers.sort();
+  numbers.sort_by_key(|s| s.chars().flat_map(|c| c.to_digit(10)).sum::<u32>());
+  numbers.join(" ")
+}
+
 fn num_count(s: &str) -> i32 {
     s.chars()
         .map(|c: char| c.to_digit(10).unwrap())
