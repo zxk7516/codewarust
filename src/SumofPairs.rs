@@ -1,3 +1,4 @@
+// my bad solution.
 fn sum_pairs(ints: &[i8], s: i8) -> Option<(i8, i8)> {
     // let mut x = vec![0; ints.len()];
     // &x.clone_from_slice(ints);
