@@ -1,7 +1,5 @@
 // my bad solution.
 fn sum_pairs(ints: &[i8], s: i8) -> Option<(i8, i8)> {
-    // let mut x = vec![0; ints.len()];
-    // &x.clone_from_slice(ints);
     let mut y = ints.iter().enumerate().collect::<Vec<(usize, &i8)>>();
     y.sort_by(|a, b| a.1.cmp(b.1));
     let mut left = 0;
