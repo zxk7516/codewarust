@@ -19,3 +19,4 @@
 // mod tank_truck;
 // mod Simple_Interactive_Interpreter;
 // mod SumofPairs;
+mode WeirdPrimeGenerator;
