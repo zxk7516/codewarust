@@ -1,3 +1,4 @@
+/// [link](https://www.codewars.com/kata/5629db57620258aa9d000014/train/rust)
 use std::collections::HashMap;
 
 fn mix(s1: &str, s2: &str) -> String {
