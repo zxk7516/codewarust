@@ -2,45 +2,51 @@
 use std::collections::HashMap;
 
 fn mix(s1: &str, s2: &str) -> String {
-    let s1 = s1.clone().to_lowercase();
-    let s2 = s2.clone().to_lowercase();
+    let s1 = s1.clone();
+    let s2 = s2.clone();
     let mut m = HashMap::new();
     s1.chars().for_each(|c| {
-        if c.is_alphabetic() {
+        if c.is_lowercase() {
             let counter = m.entry(c).or_insert((0, 0));
             (*counter).0 += 1;
         }
     });
     s2.chars().for_each(|c| {
-        if c.is_alphabetic() {
+        if c.is_lowercase() {
             let counter = m.entry(c).or_insert((0, 0));
             (*counter).1 += 1;
         }
     });
     let mut r = vec![];
     for (c, (i, j)) in m {
-        if i > 1 && j > 1 {
+        let max_i = if i > j { i } else { j };
+        if max_i > 1 {
             let sub = (i as i32) - (j as i32);
-            r.push( &format!(
-                "{}:{}",
-                match sub {
-                    sub if sub > 0 => "1",
-                    sub if sub < 0 => "2",
-                    _ => "=",
-                },
-                c.to_string().repeat(max(i, j))
+
+            r.push((
+                max_i,
+                format!(
+                    "{}:{}",
+                    match sub {
+                        sub if sub > 0 => "1",
+                        sub if sub < 0 => "2",
+                        _ => "=",
+                    },
+                    c.to_string().repeat(max_i)
+                ),
             ));
         }
     }
+    r.sort_by(|a, b| (a.1).cmp(&b.1));
+    r.sort_by(|a, b| (a.0).cmp(&b.0).reverse());
 
-    r.join("/")
-}
-fn max(a: usize, b: usize) -> usize {
-    if a > b {
-        a
-    } else {
-        b
-    }
+    r.iter().fold("".to_string(), |acc, a| {
+        if acc.len() > 0 {
+            acc + "/" + &a.1
+        } else {
+            a.1.to_string()
+        }
+    })
 }
 
 fn testing(s1: &str, s2: &str, exp: &str) -> () {
