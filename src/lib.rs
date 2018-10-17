@@ -20,3 +20,4 @@
 // mod Simple_Interactive_Interpreter;
 // mod SumofPairs;
 mod WeirdPrimeGenerator;
+// moo MagnetParticulesInBoxes;
