@@ -19,10 +19,5 @@
 // mod tank_truck;
 // mod Simple_Interactive_Interpreter;
 // mod SumofPairs;
-<<<<<<< HEAD
 mod WeirdPrimeGenerator;
 // moo MagnetParticulesInBoxes;
-=======
-// mod WeirdPrimeGenerator;
-mod StringsMix;
->>>>>>> 2b89cba30fa598190133e4cbd30e994573e038e6
