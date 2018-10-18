@@ -22,6 +22,6 @@
 // mod WeirdPrimeGenerator;
 // moo MagnetParticulesInBoxes;
 // mod StringsMix;
-// mod ProbabilitiesForSumsInRollingCubicDice;
-mod WhichXForThatSum;
-
+// mod DecodeTheMorseCode;
+// mod WhichXForThatSum;
+mod DecodeTheMorseCodeAdvanced;
