@@ -22,4 +22,6 @@
 // mod WeirdPrimeGenerator;
 // moo MagnetParticulesInBoxes;
 // mod StringsMix;
-mod ProbabilitiesForSumsInRollingCubicDice;
+// mod ProbabilitiesForSumsInRollingCubicDice;
+mod WhichXForThatSum;
+

@@ -14,22 +14,14 @@ fn dice_sum_count(sum: i32, dice_amount: i32) -> i32 {
         return if sum > 0 && sum < 7 { 1 } else { 0 };
     }
     result = dice_sum_count(sum - 6, dice_amount - 1);
-    if result > 0 {
-        for num in 0..5 {
-            let r = dice_sum_count(sum + num - 5, dice_amount - 1);
-            if r <= 0 {
-                break;
-            }
-            result += r;
+    let order = result > 0;
+    for num in 1..6 {
+        let select_number = if order { 6 - num } else { num };
+        let r = dice_sum_count(sum - select_number, dice_amount - 1);
+        if r <= 0 {
+            break;
         }
-    } else {
-        for num in 1..6 {
-            let r = dice_sum_count(sum - num, dice_amount - 1);
-            if r <= 0 {
-                break;
-            }
-            result += r;
-        }
+        result += r;
     }
 
     result
