@@ -23,3 +23,4 @@
 // moo MagnetParticulesInBoxes;
 // mod StringsMix;
 // mod DecodeTheMorseCode;
+mod DecodeTheMorseCodeAdvanced;
