@@ -1,5 +1,7 @@
 /// [Decode the Morse code, advanced](https://www.codewars.com/kata/decode-the-morse-code-advanced/train/rust)
 use std::collections::HashMap;
+use std::collections::HashSet;
+
 struct MorseDecoder {
     morse_code: HashMap<String, String>,
 }
@@ -69,7 +71,70 @@ impl MorseDecoder {
             .join(" ")
     }
     pub fn decode_bits(&self, encoded: &str) -> String {
-        encodes.chars().for_each()
+        if encoded.len() <= 0 {
+            return "".to_string();
+        }
+        let encoded = encoded.trim_matches(|c: char| c == '0');
+        let repeat = self.guess_repeat(encoded) as usize;
+        println!("{}, {}", repeat, encoded);
+        let dash = "1".repeat(repeat * 3 );
+        let dot = "1".repeat(repeat);
+        let white3 = "0".repeat(repeat * 7);
+        let white = "0".repeat(repeat * 3);
+        let split = "0".repeat(repeat);
+
+        encoded
+            .trim()
+            .replace(&dash, "-")
+            .replace(&dot, ".")
+            .replace(&white3, "   ")
+            .replace(&white, " ")
+            .replace(&split, "")
+    }
+
+    pub fn guess_repeat(&self, encoded: &str) -> i32 {
+        let mut repeat = 1;
+        let mut repeat_1 = 0;
+        let mut repeat_0 = vec![];
+        let c2 = encoded.trim_matches(|c: char| c == '0');
+        let mut c_c = c2.chars().nth(0).unwrap();
+        let mut it = c2.chars().skip(1);
+        while let Some(c) = it.next() {
+            if c == c_c {
+                repeat = repeat + 1;
+            } else {
+                if c == '1' {
+                    if repeat % 3 != 0 {
+                        return repeat;
+                    }
+                    if repeat_1 == 0 {
+                        repeat_1 = repeat;
+                    } else if repeat != repeat_1 {
+                        return if repeat > repeat_1 { repeat_1 } else { repeat };
+                    }
+                } else if c == '0' {
+                    if repeat % 3 != 0 && repeat != 7 {
+                        return repeat;
+                    } else {
+                        if repeat_0.len() == 0 {
+                            repeat_0.push(repeat);
+                        } else if repeat_0.len() == 1 {
+                            let mut repeat_0_0 = repeat_0[0];
+                            let mut m = repeat_0_0 % repeat;;
+                            while m > 0 {
+                                m = repeat_0_0 % repeat;
+                                repeat_0_0 = repeat;
+                                repeat = m;
+                            }
+                            return repeat;
+                        }
+                    }
+                }
+                repeat = 1;
+                c_c = c;
+            }
+        }
+        repeat
     }
 }
 
