@@ -55,12 +55,21 @@ impl MorseDecoder {
         }
         MorseDecoder { morse_code }
     }
-    pub fn decode_bits(&self, encoded: &str) -> String {
-        unimplemented!()
-    }
-
     pub fn decode_morse(&self, encoded: &str) -> String {
-        unimplemented!()
+        encoded
+            .trim()
+            .split("   ")
+            .map(|x| {
+                x.split(' ')
+                    .filter_map(|y| self.morse_code.get(y))
+                    .cloned()
+                    .collect()
+            })
+            .collect::<Vec<String>>()
+            .join(" ")
+    }
+    pub fn decode_bits(&self, encoded: &str) -> String {
+        encodes.chars().for_each()
     }
 }
 
